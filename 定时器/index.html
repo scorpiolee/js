@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		   #box{
+		   	width: 200px;
+		   	height: 200px;
+		   	background: #CCCCCC;
+		   	border-radius: 100px;
+		   	position: absolute;
+		   	left: 0;	
+		   	margin-top: 50px;	  		   	
+		   }
+		   #btn,#btn1{
+		   	margin: 10px auto;
+		   	width: 200px;
+		   	height: 50px;
+		   	border-radius: 10px;		   		   	
+		   }
+		   #btn{
+		   	margin-left: 100px;
+		   }
+		   #btn1{
+		   	margin-left: 400px;
+		   }
+
+		</style>
+	</head>
+	<script>
+	window.onload = function(){
+		
+		var i = 0;
+	    var oDiv = document.getElementById('box');
+	    var oBtn = document.getElementById('btn');
+	    var oBtn1 = document.getElementById('btn1');
+	    var arr = ['pink', '#C6C6C6', '#009999'];
+	    var timer = null;
+				
+		function fn1(){		
+			if( i<50 ){
+				oDiv.style.backgroundColor = arr[i%arr.length];
+				oDiv.style.left = 20 + 20*i + 'px';
+				//oDiv.style.top = 40 + 10*i + 'px';
+				//document.body.style.background = arr[i%arr.length];
+				i++;
+			}else{
+				i = 0;
+			}
+			
+		}
+		
+		oBtn1.onclick = function(){
+			clearInterval( timer );
+		    timer = setInterval( fn1, 200 );
+		}
+			
+		
+		oBtn.onclick = function(){
+			clearInterval( timer );
+		}
+	}
+	
+	   
+	</script>
+	<body>
+	<input type="button" id="btn1"  value="给小圆圈换背景吧" />
+	<input type="button" id="btn" value="遇见喜欢的就停下哦" />
+	<div id="box"></div>
+	</body>
+</html>

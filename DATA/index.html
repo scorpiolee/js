@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>抢购商品</title>
+		<style>
+			ul,li,p{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			.clearfix{
+				overflow: auto;
+				_height:1px;
+			}
+			.showlist img{
+				width: 150px;
+				height: 150px;
+				margin: 10px;				
+			}
+			.showlist{
+				width: 900px;
+				margin: 0 auto;
+				font-family: "微软雅黑";
+				font-size: 14px;
+				border-top: 2px solid #CCCCCC;				
+			}
+			.showlist li{
+				width: 200px;
+				float: left;
+				margin-left: 5px;
+				padding-top: 4px;
+				color: #666666;
+				border-right: 1px solid #CCCCCC;
+				opacity: 1;
+			}
+			li:last-child{
+				border: none;
+			}
+			#text{
+				width: 140px;
+				background: #FAE191;
+				margin-bottom: 10px;
+			}
+			.showlist span{
+				
+				margin: 16px;
+			}
+			.showlist strong{
+				font-style: normal;
+				color: #B20E00;
+			}
+			.box1,.box2,.allMoney{
+				width: 900px;
+				margin: 10px auto;
+				font-family: "微软雅黑";
+				font-size: 14px;
+				
+			}
+			.box1{
+				margin-top: 30px;
+				background: #CCCCCC;
+			}
+			.box1 span,.box2 p span{
+				width: 260px;
+				height: 30px;
+				text-align: center;
+				display: inline-block;
+			}
+			
+			.box2 img{
+				width: 80px;
+				height: 80px;
+				vertical-align: middle;
+				border: 1px solid #CCCCCC;
+				padding: 4px;
+				margin: 10px 0 10px 200px;
+			}
+			.box2 p{
+				margin-bottom: 6px;
+				background: #CCCCCC;
+			}
+			.allMoney{
+				background: #FFFFFF;
+				font-weight: bold;
+			}
+			.allMoney span{
+				color: #B20E00;
+			}
+			#over{
+				width: 200px;
+				margin: 0;				
+				height: 280px;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var oUl = document.getElementById('showlist');
+				var aLi = oUl.getElementsByTagName('li');			
+				var aBtn = oUl.getElementsByTagName('button');
+				var aSpan = oUl.getElementsByTagName('span');
+				var aInp = oUl.getElementsByTagName('input');
+				var oBox2 = document.getElementById('box2');
+				
+				var oName = document.getElementById('name');
+				var oMoney = document.getElementById('money');
+				var oSale = document.getElementById('sale1');
+				var oAllMoney = document.getElementById('allMoney');
+				var iNew = null;
+				var iNow = null;
+				var t = 0;
+				var str = '';
+				var sMoney = 0;
+				
+				for(var i=0; i<aBtn.length; i++){
+					aBtn[i].index = i;	
+					aBtn[i].onclick = click;
+				}
+				function click(){
+					    var num = this.index;					
+						iNew = new Date(aInp[num].value);					
+						clearInterval( aSpan[num].timer);
+							
+						aSpan[num].timer = setInterval(function(){
+							iNow = new Date();
+							t = Math.floor( ( iNew - iNow ) / 1000 );
+									
+							if(t >= 0){								
+								str ='剩余'+ Math.floor(t/86400) +'天' + Math.floor(t%86400/3600) + '时' + Math.floor(t%86400%3600/60) + '分' + t%60 + '秒'; 								
+								aSpan[num].innerHTML = str;																
+							}else{
+								clearInterval( aSpan[num].timer );																
+								over();
+																							
+							}
+						},1000);
+				}
+				
+				
+				function over(){
+					var oP = document.createElement('p');
+					
+					var oSpan1 = document.createElement('span');
+					oP.appendChild(oSpan1);
+					oSpan1.innerHTML = oName.innerHTML;
+					
+					var oSpan2 = document.createElement('span');
+					oP.appendChild(oSpan2);
+					oSpan2.innerHTML = oMoney.innerHTML;
+					
+					var oImg = document.createElement('img');
+					oP.appendChild(oImg);
+					oImg.src = oSale.src;
+					
+					oBox2.appendChild(oP);	
+					
+					sMoney += parseFloat(oMoney.innerHTML);
+					oAllMoney.innerHTML = sMoney + '元';
+				}	
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<hr />
+		<h3>限购时间</h3>
+		<ul class="showlist clearfix" id="showlist">
+			<li>
+				<input type="text" value="April 15,2016 19:20:0" id="text" />
+				<button>确定</button>
+				<span>剩余00天00时00分00秒</span>
+				<img src="img/Lighthouse.jpg" id="sale1" />				
+				<p id="name">疯狂爆款，商城大减价，只要998</p>
+				<p>抢购价:<strong id="money">599.00</strong>元</p>
+			</li>
+			<li>
+				<input type="text" value="April 15,2016 18:26:0" id="text" />
+				<button>确定</button>
+				<span>剩余00天00时00分00秒</span>
+				<img src="img/Lighthouse.jpg" id="sale1" />				
+				<p id="name">疯狂爆款，商城大减价，只要998</p>
+				<p>抢购价:<strong id="money">599.00</strong>元</p>
+			</li>
+			<li>
+				<input type="text" value="April 15,2016 18:26:0" id="text" />
+				<button>确定</button>
+				<span>剩余00天00时00分00秒</span>
+				<img src="img/Lighthouse.jpg" id="sale1" />				
+				<p id="name">疯狂爆款，商城大减价，只要998</p>
+				<p>抢购价:<strong id="money">599.00</strong>元</p>
+			</li>
+			<li>
+				<input type="text" value="April 15,2016 18:26:0" id="text" />
+				<button>确定</button>
+				<span>剩余00天00时00分00秒</span>
+				<img src="img/Lighthouse.jpg" id="sale1" />				
+				<p id="name">疯狂爆款，商城大减价，只要998</p>
+				<p>抢购价:<strong id="money">599.00</strong>元</p>
+			</li>
+		</ul>
+		<div class="box1">
+			<span class="box1-name">商品名称</span>
+			<span class="box1-money">价钱</span>
+		</div>
+		<div class="box2" id="box2">
+			<!--<p>
+				<span class="box2-name">疯狂爆款，商城大减价，只要998</span>
+				<span class="box2-money">$599.00</span>
+				<img src="img/Lighthouse.jpg"/>			
+			</p>
+			<p>
+				<span class="box2-name">疯狂爆款，商城大减价，只要998</span>
+				<span class="box2-money">$599.00</span>
+				<img src="img/Lighthouse.jpg"/>			
+			</p>-->
+		</div>
+		<div class="allMoney">总价：<span id="allMoney">0</span></div>
+	</body>
+</html>

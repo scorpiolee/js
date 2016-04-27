@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body{margin: 0; padding: 0; font-family: "微软雅黑"; }
+			ul{margin: 0; padding: 0;}
+			li{list-style: none;}
+			#box{ height: 500px; width: 800px; background: url(img/33.jpg) no-repeat; opacity: 1; position: relative; margin-left: 300px; margin-top: 50px;}
+		    #box h2{color: #FFFFFF;}
+		    #pic{ height: 400px; width: 700px; position: absolute; top: 50px; left: 50px;}
+		    #pic img{height: 400px; width: 700px;}
+		    #pic a{width: 50px; height: 50px; background: #009999; opacity: 0.5; color: #F1F1F1; line-height: 50px; text-align: center; text-decoration: none;}
+		    #pic a:hover{opacity: 0.9;}
+		    #prev{position:absolute;top: 180px; left: 0;}
+		    #next{position: absolute; top: 180px; right: 0;}
+		    #pic ul{height:40px; position: absolute; bottom: 0; left: 270px;}
+		    #pic li{ width: 40px; height: 40px; background: #CCCCCC; margin-right: 4px; text-align: center; line-height: 40px; float: left;position: relative;}	
+		    #pic li img{width: 100px; height: 100px; position: absolute; top: -100px; right: 20px; display: none;}
+		    #pic .active{background: pink;}
+		</style>
+		<script>
+			window.onload = function(){
+				var oDiv = document.getElementById('pic');
+				var oPrev = document.getElementById('prev');
+				var oNext = document.getElementById('next');
+				var oImg = oDiv.getElementsByTagName('img')[0];
+				var oUl = oDiv.getElementsByTagName('ul')[0];
+				var aLi = oUl.getElementsByTagName('li');
+			
+				
+				var arrUrl = ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png'];
+				var num = 0;
+				var num1 = 0;
+
+				
+				
+				oPrev.onclick = function(){
+					num--;
+					if(num == -1){ 
+						num=arrUrl.length-1;						
+					}
+					oImg.src = arrUrl[num];
+					num1 = num;
+					fntab();
+				}
+				oNext.onclick = function(){
+					num++;
+					if(num == arrUrl.length){ 
+						num=0;						
+					}
+					oImg.src = arrUrl[num];
+					num1 = num;
+					fntab();
+				}
+				
+				for(var i=0; i<aLi.length; i++){
+					
+					aLi[i].onmouseover = function(){
+						this.getElementsByTagName('img')[0].style.display = 'block';
+						this.getElementsByTagName('img')[0].style.zIndex = 1;
+					}
+					aLi[i].onmouseleave = function(){
+						this.getElementsByTagName('img')[0].style.display = 'none';
+					}
+					aLi[i].index = i;
+					aLi[i].onclick = function(){
+						num1 = this.index;
+						fntab();
+						oImg.src = arrUrl[this.index];
+					}
+					
+				}
+				
+				function fntab(){
+					for(var i=0; i<aLi.length;i++){
+						aLi[i].className = '';
+					}
+					aLi[num1].className = 'active';
+				}								
+			}
+		</script>
+
+	</head>
+	<body>
+		<div id="box">
+			<h2>带缩略图的图片轮换</h2>
+			<div id="pic">
+				<img src="img/1.png" />
+				<a id="prev" href="javascript:;"><</a>
+			    <a id="next" href="javascript:;">></a>
+			    <ul>
+			    	<li>
+			    		<img src="img/1.png" />
+			    	</li>
+			    	<li>
+			    		<img src="img/2.png" />
+			    	</li>
+			    	<li>
+			    		<img src="img/3.png"  />
+			    	</li>
+			    	<li>
+			    		<img src="img/4.png"/>
+			    	</li>
+			    </ul>
+			</div>
+			<div></div>
+		</div>
+	</body>
+</html>

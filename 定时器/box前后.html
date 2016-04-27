@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="scorpio.js"></script>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				margin-top: 40px;
+				position: absolute;
+				top: 40px;
+				left: 20px;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				
+				var oBtn1 = document.getElementById('btn1');
+				var oBtn2 = document.getElementById('btn2');
+				var oDiv = document.getElementById('box');
+				
+				
+				oBtn2.onclick = function(){					
+					doMove ( oDiv, 'left', 12, 800, function(){
+						doMove ( oDiv, 'top', 34, 500 );
+					}	);             //添加回调函数
+				}
+				oBtn1.onclick = function(){					
+					doMove ( oDiv, 'left', -12, 10 );
+				}																
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btn1"  value="往后" />
+		<input type="button" id="btn2"  value="往前" />
+		<div id="box"></div>
+	</body>
+</html>

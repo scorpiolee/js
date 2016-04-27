@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				background: pink;
+			}
+			img{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 200px;
+			}
+		</style>
+		<script src="scorpio.js"></script>
+		<script>
+			window.onload = function(){
+		
+				var aImg = document.getElementsByTagName('img');
+				
+				
+				
+				aImg[0].onclick = fnShake;					
+				aImg[1].onclick = fnShake;
+								
+				for( var i=0; i<aImg.length; i++){
+					
+					aImg[i].style.left = 80 + i*110 + 'px';
+					
+					aImg[i].onmouseover = function(){
+						shake( this, 'top');
+					};			
+				}
+				
+				
+				function fnShake(){
+					var _this = this;
+					shake( _this, 'left',function(){
+						shake( _this, 'top' );
+					} );
+				}
+			
+			
+				function shake( obj, attr, endFn ){
+					var pos = parseInt( getStyle( obj, attr ) );				
+					var arr = [];
+					var num = 0;
+					
+					
+					for( var i=20; i>0; i-=2 ){
+						arr.push( i, -i);
+					};
+					arr.push(0);					
+					clearInterval( obj.shake );
+					
+					obj.shake = setInterval(function(){
+						obj.style[attr] = pos + arr[num] + 'px';
+						num++;
+						if( num === arr.length ){
+							clearInterval( obj.shake );
+							endFn && endFn();
+						}
+					},50);					
+				}
+				
+			}//小bug是，每次都动态获取到上一个状态的位置，回不到最初的那个状态，解决办法，将shake中的pos设为定值
+		</script>
+	</head>
+	<body>
+	<img src="img/2.jpg" id="img1" />
+	<img src="img/1.jpg" id="img2" />
+	<img src="img/1.jpg" />
+	<img src="img/1.jpg" />
+	<img src="img/1.jpg" />
+	<img src="img/1.jpg" />
+	<img src="img/1.jpg" />
+	<img src="img/1.jpg" />
+	<img src="img/1.jpg" />
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

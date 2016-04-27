@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>生成200个盒子</title>
+<style>
+	div{height: 50px; width: 50px; background: red; border: 1px solid #000000; position: absolute;top: 0; left: 0; line-height: 50px;text-align: center;font-size: 30px;color: #FFFFFF;}
+</style>
+<script>
+
+window.onload=function(){
+	/*//200个盒子,每十个换行
+	var aDiv=document.getElementsByTagName('div');
+	var str='';
+	
+	for(var i=0; i<20;i++){
+		document.body.innerHTML += '<div>' + i + '</div>';
+	}
+	for(var i=0; i<aDiv.length; i++){		
+		if(i%10==0){
+			aDiv[i].style.left = 0+'px';
+			aDiv[i].style.top = i*6+'px';
+		}
+			aDiv[i].style.left +=50*i+'px';
+		    aDiv[i].style.top +=50+'px';
+	};*/
+	//形成V字
+	var aDiv=document.getElementsByTagName('div');
+	
+	for(var i=0; i<21;i++){
+		document.body.innerHTML += '<div>' + i + '</div>';
+	}
+	for( var i=0; i<10; i++){
+		aDiv[i].style.left = i*50+'px';
+		aDiv[i].style.top = i*50+'px';
+	}
+	for( var i=10; i<aDiv.length; i++){
+		aDiv[i].style.left = i*50+'px';
+		aDiv[i].style.top = (20-i)*50+'px';
+	}
+}
+</script>
+</head>
+<body>
+</body>
+</html>

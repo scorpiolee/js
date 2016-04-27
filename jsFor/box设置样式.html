@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js_给盒子设置样式</title>
+		<style>
+			body{padding: 0; margin:30px 100px; background: #f1f1f1;}
+			ul{padding: 0; margin: 0; }
+			li{list-style: none;}
+			span{font-size: 20px; font-family: "微软雅黑";}
+			
+			#but1{border:none; width: 100px; height: 40px; background: red; font-size: 18px;}
+			#box1{ width: 100px; height: 100px; border: 4px solid #000000;margin: 30px; background: white;}
+			
+			#box2{position:absolute;top:0;left:0; width:100%; height:100%; background:#000; opacity:0.5;filter:alpha(opacity=50); display: none;}
+			#box3{width:300px; height:200px; background:#fff; border:20px solid #9C9C9C; position:absolute;right:200px;bottom:200px; display: none;}
+			
+			ul{padding: 5px; font-size: 12px; font-family: "微软雅黑";}
+			li{height: 40px;}
+			.but{width: 40px; height: 30px; background:#999999; border: none; padding: 2px;margin-left: 10px;}
+		    .but1{width: 50px; height: 30px; background: darkorange; color: white; border: none;}
+		
+		
+		</style>
+	</head>
+	<body>
+		<span>请为下面的div设置样式:</span>
+		<input type="button" value="点击设置" id="but1" />
+		<div id="box1"></div>
+		<div id="box2"></div>
+		<div id="box3">
+			<ul>
+				<li>
+					请选择背景色:
+					<input type="button" value="红" id="but2" class="but" style="background:greenyellow;"/>
+					<input type="button" value="黄" id="but3" class="but" style="background:yellow;"/>
+					<input type="button" value="蓝" id="but4" class="but" style="background:blue;"/>
+				</li>
+				<li>
+					请选择宽(px):
+					<input type="button" value="200" id="but5"  class="but"/>
+					<input type="button" value="300" id="but6" class="but" />
+					<input type="button" value="400" id="but7"  class="but"/>
+				</li>
+				<li>
+					请选择高(px):
+					<input type="button" value="200" id="but8" class="but" />
+					<input type="button" value="300" id="but9"  class="but"/>
+					<input type="button" value="400" id="but10"  class="but"/>
+				</li>
+			</ul>
+			<input type="reset" value="恢复" id="but11" class="but1"/>
+			<input type="button" value="确定" id="but12"  class="but1"/>
+		</div>
+		
+		<script>
+		    var box1=document.getElementById('box1');
+		    var but1=document.getElementById('but1');
+		    var box2=document.getElementById('box2');
+		    var box3=document.getElementById('box3');
+		    var but2=document.getElementById('but2');
+		    var but5=document.getElementById('but5');
+		    var but8=document.getElementById('but8');
+		    var but11=document.getElementById('but11');
+		    var but12=document.getElementById('but12');
+		    
+		    
+		    
+		    
+		    
+		    
+		    but1.onclick=start;
+		    but2.onmouseenter=move;
+		    but2.onmouseleave=move1;
+		    but2.onclick=cheage;
+		    
+		    but5.onmouseenter=move5;
+		    but5.onmouseleave=move6;
+		    but5.onclick=cheage5;
+		    
+		    but8.onmouseenter=move8;
+		    but8.onmouseleave=move9;
+		    but8.onclick=cheage8;
+		    
+		    but11.onclick=cheage11;
+		    
+		    but12.onclick=cheage12;
+		    
+		    function start(){
+		    	box2.style.display='block';
+		    	box3.style.display='block';		    	
+		    }
+		    function move(){
+		    	but2.style.background='red';
+		    }
+		    function move1(){
+		    	but2.style.background='greenyellow';
+		    }
+		    function cheage(){
+		    	box1.style.background='red';
+		    	
+		    }
+		    function move5(){
+		    	but5.style.background='#F1F1F1';
+		    }
+		    function move6(){
+		    	but5.style.background='#999999';
+		    }
+		    function cheage5(){
+		    	box1.style.width='200px';
+		    	
+		    }
+		    
+		    function move8(){
+		    	but8.style.background='#F1F1F1';
+		    }
+		    function move9(){
+		    	but8.style.background='#999999';
+		    }
+		    function cheage8(){
+		    	box1.style.height='200px';
+		    	
+		    }
+		    
+		    function cheage11(){
+		    	box1.style.height='100px';
+		    	box1.style.width='100px';
+		    	box1.style.background='white';
+		    }
+		    
+		    function cheage12(){
+		    	box2.style.display='none';
+		    	box3.style.display='none';		    			    			    	
+		    }
+
+			
+			
+		</script>
+	</body>
+</html>

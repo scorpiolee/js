@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+		//解决思路：将str中获得到的时间数字，和图片下标的数字进行关联，用charAt()方法可以得到str中的数字
+			window.onload = function(){
+				
+				var oBody = document.body;
+				var oP = document.getElementById('time');
+				var aImg = document.getElementsByTagName('img');
+				
+				setInterval( fnTime, 1000 );
+				fnTime ();
+				
+				function fnTime (){
+				
+					var myTime = new Date();				
+
+					var iHour = myTime.getHours();
+					var iMin = myTime.getMinutes();
+					var iSec = myTime.getSeconds();
+					var str = '';
+					
+					str = Two(iHour) + Two(iMin) + Two(iSec);
+					
+					oP.innerHTML = str;	
+					
+					for( var i=0; i<str.length; i++){
+						aImg[i].src = 'img/' + str.charAt(i)  +'.JPG';
+					}
+				}
+				function Two ( n ){
+					return n < 10 ?  '0' + n : '' + n;					 					
+				}	
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<p id="time" style="font-size: 60px;"></p>
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+	</body>
+</html>
